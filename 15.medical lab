@@ -1,0 +1,13 @@
+import numpy as np
+import scipy.stats as stats
+import matplotlib.pyplot as plt
+control_group = np.array([1.2, 1.3, 1.25, 1.35, 1.4])
+treatment_group = np.array([1.45, 1.55, 1.5, 1.6, 1.65])
+t_stat, p_value = stats.ttest_ind(control_group, treatment_group)
+print("t-statistic: ", t_stat)
+print("p-value: ", p_value)
+plt.figure(figsize=(10, 5))
+plt.boxplot([control_group, treatment_group], labels=['Control Group', 'Treatment Group'])
+plt.title('Control Group vs Treatment Group')
+plt.ylabel('Response')
+plt.show()

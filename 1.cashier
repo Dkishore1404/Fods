@@ -1,0 +1,13 @@
+def calculate_total_cost(item_prices, quantities, discount_rate, tax_rate):
+    total_price = sum([price * quantity for price, quantity in zip(item_prices, quantities)])
+    total_discount = total_price * discount_rate / 100
+    price_after_discount = total_price - total_discount
+    total_tax = price_after_discount * tax_rate / 100
+    total_cost = price_after_discount + total_tax
+    print(total_price)
+    print(total_cost)
+item_prices = [100, 200, 300]
+quantities = [1, 2, 3]
+discount_rate = 10
+tax_rate = 5
+total_cost = calculate_total_cost(item_prices, quantities, discount_rate, tax_rate)

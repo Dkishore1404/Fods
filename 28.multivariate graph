@@ -1,0 +1,6 @@
+import seaborn as sns
+import pandas as pd
+sns.scatterplot(x='mpg', y='hp', hue='wt', data=df)
+plt.show()
+sns.pairplot(df)
+plt.show()

@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+features = ['income', 'credit_score', 'debt_to_income_ratio', 'employment_duration']
+X = df[features]
+y = df['risk']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print('Model accuracy: {}'.format(accuracy))
+new_applicant = pd.DataFrame([[50000, 700, 0.2, 5]], columns=features)
+new_applicant_prediction = clf.predict(new_applicant)
+print('The new applicant is likely to be {} risk.'.format(new_applicant_prediction[0]))

@@ -1,0 +1,9 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv('shoe_sales.csv')
+freq_dist = df.groupby('shoe_size')['quantity'].sum()
+print(freq_dist)
+plt.xlabel('Shoe Size')
+plt.ylabel('Quantity Sold')
+plt.title('Frequency Distribution of Shoe Sizes Sold')
+plt.show()

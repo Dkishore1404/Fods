@@ -1,0 +1,21 @@
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import string
+import matplotlib.pyplot as plt
+data = pd.read_csv('data.csv')
+stop_words = set(stopwords.words('english'))
+data['processed_feedback'] = data['feedback'].str.lower().apply(lambda x:''.join([i for i in x if i not in string.punctuation])).apply(word_tokenize).apply(lambda x: [i for i in x if i not in stop_words])
+frequency_dist = nltk.FreqDist([word for sublist in data['processed_feedback'].tolist() for word in sublist])
+N = int(input("Enter the number of top frequent words to display: "))
+top_N_words = frequency_dist.most_common(N)
+print("Top {} most frequent words: {}".format(N, top_N_words))
+words = [word[0] for word in top_N_words]
+frequencies = [word[1] for word in top_N_words]
+plt.figure(figsize=(10, 5))
+plt.bar(words, frequencies)
+plt.title('Top {} Most Frequent Words'.format(N))
+plt.xlabel('Words')
+plt.ylabel('Frequency')
+plt.show()

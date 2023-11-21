@@ -1,0 +1,12 @@
+import pandas as pd
+import numpy as np
+df = pd.read_csv('your_data.csv')\
+mean_estimation = df.mean()
+print("Mean estimation: ")
+print(mean_estimation)
+variance_estimation = df.var()
+print("\nVariance estimation: ")
+print(variance_estimation)
+sample = df.sample(n=100)
+print("\nSample: ")
+print(sample)

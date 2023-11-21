@@ -1,0 +1,12 @@
+import collections
+reviews = [
+    "This product is great!",
+    "I love this product",
+    "Best purchase ever",
+    "This is a great product",
+    "I am so happy with this product"
+]
+all_reviews = " ".join(reviews)
+words = all_reviews.split()
+word_counts = collections.Counter(words)
+print(word_counts)

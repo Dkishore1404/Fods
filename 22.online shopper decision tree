@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+features = ['age', 'income', 'browsing_duration', 'device_type']
+X = df[features]
+y = df['purchase']
+le = LabelEncoder()
+X['device_type'] = le.fit_transform(X['device_type'])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print('Model accuracy: {}'.format(accuracy))
+new_customer = pd.DataFrame([[30, 50000, 10, 'mobile']], columns=features)
+new_customer['device_type'] = le.transform(new_customer['device_type'])
+new_customer_prediction = clf.predict(new_customer)
+print('The new customer is likely to make a purchase.' if new_customer_prediction[0] == 1 else 'The new customer is unlikely to make a purchase.')

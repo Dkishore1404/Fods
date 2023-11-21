@@ -1,0 +1,5 @@
+import collections
+products_sold = ['Product A', 'Product B', 'Product C', 'Product A', 'Product B', 'Product C', 'Product A']
+product_counts = collections.Counter(products_sold)
+most_common_product = product_counts.most_common(1)
+print("The most popular product is: ", most_common_product[0][0])
